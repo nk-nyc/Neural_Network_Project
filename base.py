@@ -1,3 +1,5 @@
+from random import random
+
 # training = True/False whether this is training vs. test data
 # n = number of images/labels to get
 # returns array of (pixels, label)
@@ -36,5 +38,36 @@ print(f"Loaded {len(data)} items")
 # Test one of them
 test_print(data[20])
 
+# Four layers:
+# 1. input layer
+# 2. hidden layer 1 of 16 neurons, each with 784 weights and one bias
+# 3. hidden layer 1 of 16 neurons
+# 4. output layer of 10
 
+class Neuron:
+    def __init__(self, random_weights=None):
+        self.weights = []
+        if random_weights:
+            for _ in range(random_weights):
+                self.weights.append(random())
+    
+    def __str__(self):
+       return f"Neuron:{self.weights}"
 
+class Layer:
+    def __init__(self, neurons=16, random_weights=4):
+        self.neurons = []
+        for _ in range(neurons):
+            self.neurons.append(Neuron(random_weights))
+        self.bias = random()
+    
+    def __str__(self):
+       return f"Layer:Bias={self.bias}, {[str(n) for n in self.neurons]}"
+
+layer2 = Layer()
+print(layer2)
+
+# Returns an array of 10 numbers
+def execute_nn(image_pixels):
+    # for each neuron in layer 1
+    pass
