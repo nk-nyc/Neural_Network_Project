@@ -1,4 +1,5 @@
-from random import random
+import random
+rand=random.Random()
 
 # training = True/False whether this is training vs. test data
 # n = number of images/labels to get
@@ -49,7 +50,7 @@ class Neuron:
         self.weights = []
         if random_weights:
             for _ in range(random_weights):
-                self.weights.append(random())
+                self.weights.append(rand.uniform(-2, 2)) #assigns arbitrary weights between 0 and 2
     
     def __str__(self):
        return f"Neuron:{self.weights}"
@@ -59,10 +60,13 @@ class Layer:
         self.neurons = []
         for _ in range(neurons):
             self.neurons.append(Neuron(random_weights))
-        self.bias = random()
+        self.bias = rand.uniform(-10, 10)
     
     def __str__(self):
        return f"Layer:Bias={self.bias}, {[str(n) for n in self.neurons]}"
+    
+    def sigmoid(x):
+       return 1/(1+(2.718281828459**(-x)))
 
 layer2 = Layer()
 print(layer2)
